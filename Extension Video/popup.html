@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 320px;
+      min-height: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #e0e0e0;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .video-list {
+      margin-bottom: 15px;
+    }
+
+    .video-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .video-item:hover {
+      background: rgba(124, 58, 237, 0.2);
+      border-color: #7c3aed;
+      transform: translateY(-2px);
+    }
+
+    .video-item-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .video-icon {
+      font-size: 24px;
+    }
+
+    .video-info {
+      flex: 1;
+    }
+
+    .video-source {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 3px;
+    }
+
+    .video-url {
+      font-size: 10px;
+      color: #6b7280;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .analyze-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .analyze-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+
+    .no-videos {
+      text-align: center;
+      padding: 30px 20px;
+      color: #9ca3af;
+    }
+
+    .no-videos-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+      opacity: 0.5;
+    }
+
+    .no-videos p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding: 15px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .spinner {
+      border: 3px solid rgba(124, 58, 237, 0.3);
+      border-top: 3px solid #7c3aed;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(124, 58, 237, 0.3);
+      color: #a78bfa;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎥 Deepfake Detector</h1>
+    <p>AI-powered video verification</p>
+  </div>
+
+  <div class="content">
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>Scanning for videos...</p>
+    </div>
+
+    <div id="video-list" class="video-list"></div>
+
+    <div id="no-videos" class="no-videos" style="display: none;">
+      <div class="no-videos-icon">🎬</div>
+      <p>No videos detected on this page.<br>Navigate to a page with videos to analyze them.</p>
+      <button id="retry-btn" class="analyze-btn" style="margin-top: 15px;">🔄 Retry Scan</button>
+    </div>
+
+    <div id="error-message" class="no-videos" style="display: none; color: #ef4444;">
+      <div class="no-videos-icon">⚠️</div>
+      <p></p>
+      <button id="retry-btn-error" class="analyze-btn" style="margin-top: 15px;">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by Google Gemini
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

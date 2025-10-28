@@ -1,0 +1,5 @@
+
+{
+  "name": "AI Image Detector",
+  "description": "An application to detect if an uploaded image is AI-generated or a real photograph using Gemini. Users can upload up to 20 images at once for analysis."
+}
